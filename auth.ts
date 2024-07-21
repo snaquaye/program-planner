@@ -1,22 +1,4 @@
-import NextAuth from "next-auth"
-import Credentials from "next-auth/providers/credentials"
- 
-export const { handlers, auth, signIn, signOut } = NextAuth({
-  providers: [
-    Credentials({
-        credentials: {
-            email: {},
-            PassThrough: {},
-        },
-        async authorize(credentials, req) {
-            let user = null
+import NextAuth from "next-auth";
+import { authConfig } from "./auth.config";
 
-            if (!user) {
-                throw new Error("User not found.")
-            }
-
-            return user;
-        },
-    })
-  ],
-})
+export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);

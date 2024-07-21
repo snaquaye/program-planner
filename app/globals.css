@@ -2,32 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer base {
+  form {
+    @apply px-8 pt-6 pb-8 mb-4 space-y-4 mt-2 w-full
+  }
+  
+  input, select {
+    @apply border-solid border-[1px] rounded-md p-2 focus:outline-none
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  button {
+    @apply bg-gray-950 text-white p-2 rounded
+  }
+
+  button:disabled {
+    @apply bg-gray-500 min-w-full
+  }
+
+  h1 {
+    @apply font-bold text-4xl
+  }
+
+  h2 {
+    @apply font-bold text-3xl
+  }
+
+  th {
+    @apply text-left
+  }
+
+  td, th {
+    @apply px-4 py-2
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+@layer components {
+  .form-group {
+    @apply flex flex-col
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .form-row {
+    @apply flex
+  }
+
+  .nav-links {
+    @apply flex hover:rounded active:rounded text-gray-400 hover:text-white hover:bg-blue-900 active:text-white active:bg-blue-900 p-2
   }
 }
