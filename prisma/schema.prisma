@@ -50,6 +50,9 @@ model Facilitator {
   restricted Boolean @default(false) 
 
   ScheduleDetail ScheduleDetail[]
+
+  updateAt DateTime @updatedAt
+  createdAt DateTime @default(now())
 }
 
 model Schedule {

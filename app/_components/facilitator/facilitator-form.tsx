@@ -1,22 +1,34 @@
 "use client";
 
+import { saveFacilitator } from "@/app/actions/facilitator-actions";
 import { FormState } from "@/lib/type";
 import { Facilitator } from "@prisma/client";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useFormState } from "react-dom";
+import Button from "../button";
 
 type Props = {
   data?: Facilitator;
-}
+};
 
 const initialState = {} as FormState;
 
 export default function FacilitatorForm({ data }: Props) {
-  const [state, formAction] = useFormState(_, initialState);
+  const [state, formAction] = useFormState(saveFacilitator, initialState);
   const ref = useRef<HTMLFormElement | null>(null);
 
+  useEffect(() => {
+    return () => {
+      state.error = {}
+    }
+  });
+
   return (
-    <form className="form">
+    <form className="form" action={async (payload) => {
+      await formAction(payload);
+
+      ref.current?.reset();
+    }}>
       <p className="w-full border-b-[1px]">
         Complete the form to create a user account
       </p>
@@ -34,10 +46,8 @@ export default function FacilitatorForm({ data }: Props) {
       </div>
 
       <div className="form-group">
-        <button type="submit">
-          Add Facilitator
-        </button>
+        <Button title={data?.id ? "Edit Facilitator" : "Save Facilitator"} />
       </div>
     </form>
   );
-} 
+}

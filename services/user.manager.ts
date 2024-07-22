@@ -55,7 +55,7 @@ const UserManager = {
     user.password = bcrypt.hashSync(user.password, secret);
     return await prisma.user.upsert({
       where: {
-        id: user.id,
+        id: user.id || "",
       },
       create: user,
       update: user,

@@ -6,6 +6,7 @@ const UserService = {
     return await prisma.user.findFirst({
       where: { email },
       select: {
+        id: true,
         email: true,
         name: true,
         lastLogin: true,

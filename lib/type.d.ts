@@ -8,8 +8,8 @@ export type SearchParamsType = {
   q: string
 }
 
-export type ErrorResponse = {
+export type Response = {
   success: boolean,
-  message: string,
+  message?: string,
   error?: any
 }
